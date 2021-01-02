@@ -6,10 +6,12 @@ import { Map, Modal, Panel, Input } from "./components";
 export default function App() {
   const [points, setPoints] = useState([]);
   const [name, setName] = useState("");
+  const [tempPoint, setTempPoint] = useState({});
+  const [visibility, setVisibility] = useState(false);
 
   const handleLongPress = ({ nativeEvent }) => {
-    const newPoints = points.concat({ coordinate: nativeEvent.coordinate });
-    setPoints(newPoints);
+    setTempPoint(nativeEvent.coordinate);
+    setVisibility(true);
   };
 
   const handleChangeText = (text) => {};
@@ -18,7 +20,7 @@ export default function App() {
     <View style={styles.container}>
       <Map onLongPress={handleLongPress} />
       <Panel />
-      <Modal visibility={true}>
+      <Modal visibility={visibility}>
         <Input
           title="Name"
           placeholder="Point name"
