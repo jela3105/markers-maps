@@ -3,7 +3,7 @@ import { StyleSheet, Modal, View, Text } from "react-native";
 
 export default () => {
   return (
-    <Modal transparent={true} animationType="slide" visible={true}>
+    <Modal transparent={true} animationType="slide" visible={false}>
       <View style={styles.center}>
         <View style={styles.modalView}>
           <Text>Text</Text>

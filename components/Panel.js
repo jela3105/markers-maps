@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Dimensions, Button, View } from "react-native";
+import { StyleSheet, Button, View } from "react-native";
 
 export default () => {
   return (

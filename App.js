@@ -4,9 +4,12 @@ import { StyleSheet, View, Text } from "react-native";
 import { Map, Modal, Panel } from "./components";
 
 export default function App() {
+  const handleLongPress = ({ nativeEvent }) => {
+    console.log(nativeEvent);
+  };
   return (
     <View style={styles.container}>
-      <Map />
+      <Map onLongPress={handleLongPress} />
       <Panel />
       <Modal />
       <StatusBar style="auto" />
