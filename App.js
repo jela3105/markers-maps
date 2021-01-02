@@ -16,7 +16,9 @@ export default function App() {
     <View style={styles.container}>
       <Map onLongPress={handleLongPress} />
       <Panel />
-      <Modal />
+      <Modal visibility={true}>
+        <Text>Efesota</Text>
+      </Modal>
       <StatusBar style="auto" />
     </View>
   );
