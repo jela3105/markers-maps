@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import { Map, Modal, Panel, Input } from "./components";
 
 export default function App() {
@@ -14,7 +14,15 @@ export default function App() {
     setVisibility(true);
   };
 
-  const handleChangeText = (text) => {};
+  const handleSubmit = () => {
+    const newPoint = { coordinate: tempPoint, name: name };
+    setPoints(points.concat(newPoint));
+    setVisibility(false);
+    setName("");
+  };
+  const handleChangeText = (text) => {
+    setName(text);
+  };
 
   return (
     <View style={styles.container}>
@@ -26,6 +34,7 @@ export default function App() {
           placeholder="Point name"
           onChangeText={handleChangeText}
         />
+        <Button title="Ok" onPress={handleSubmit} />
       </Modal>
       <StatusBar style="auto" />
     </View>
