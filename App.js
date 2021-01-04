@@ -20,6 +20,10 @@ export default function App() {
     setVisibility(false);
     setName("");
   };
+  const handleCancel = () => {
+    setVisibility(false);
+    setName("");
+  };
   const handleChangeText = (text) => {
     setName(text);
   };
@@ -34,7 +38,10 @@ export default function App() {
           placeholder="Point name"
           onChangeText={handleChangeText}
         />
-        <Button title="Ok" onPress={handleSubmit} />
+        <View style={styles.buttons}>
+          <Button title="Ok" onPress={handleSubmit} />
+          <Button title="Cancel" onPress={handleCancel} />
+        </View>
       </Modal>
       <StatusBar style="auto" />
     </View>
@@ -47,5 +54,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
 });
