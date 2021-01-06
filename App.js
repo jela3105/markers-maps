@@ -55,7 +55,7 @@ export default function App() {
             </View>
           </>
         ) : (
-          <List points={points} />
+          <List points={points} closeModal={handleCancel} />
         )}
       </Modal>
       <StatusBar style="auto" />
