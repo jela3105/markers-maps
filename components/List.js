@@ -15,11 +15,15 @@ export default ({ points, closeModal }) => {
       <View style={styles.list}>
         <FlatList
           data={points.map((x) => x.name)}
-          renderItem={({ item }) => <Text>{item}</Text>}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Text>{item}</Text>
+            </View>
+          )}
           keyExtractor={(item) => item}
         />
       </View>
-      <View>
+      <View style={styles.button}>
         <Button onPress={closeModal} title="Cancel" />
       </View>
     </>
@@ -27,7 +31,15 @@ export default ({ points, closeModal }) => {
 };
 
 const styles = StyleSheet.create({
+  button: { paddingBottom: 15 },
   list: {
     height: Dimensions.get("window").height - 300,
+  },
+  item: {
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
+    height: 50,
+    justifyContent: "center",
+    padding: 20,
   },
 });
