@@ -7,9 +7,11 @@ export default function App() {
   const [points, setPoints] = useState([]);
   const [name, setName] = useState("");
   const [tempPoint, setTempPoint] = useState({});
+  const [visibilityFilter, setVisibilityFilter] = useState("new_point"); // new_point, all_points
   const [visibility, setVisibility] = useState(false);
 
   const handleLongPress = ({ nativeEvent }) => {
+    setVisibilityFilter("new_point");
     setTempPoint(nativeEvent.coordinate);
     setVisibility(true);
   };
@@ -28,20 +30,31 @@ export default function App() {
     setName(text);
   };
 
+  const handleList = () => {
+    setVisibilityFilter("all_points");
+    setVisibility(true);
+  };
+
   return (
     <View style={styles.container}>
       <Map onLongPress={handleLongPress} />
-      <Panel />
+      <Panel onPressList={handleList} textList="List" />
       <Modal visibility={visibility}>
-        <Input
-          title="Name"
-          placeholder="Point name"
-          onChangeText={handleChangeText}
-        />
-        <View style={styles.buttons}>
-          <Button title="Ok" onPress={handleSubmit} />
-          <Button title="Cancel" onPress={handleCancel} />
-        </View>
+        {visibilityFilter === "new_point" ? (
+          <>
+            <Input
+              title="Name"
+              placeholder="Point name"
+              onChangeText={handleChangeText}
+            />
+            <View style={styles.buttons}>
+              <Button title="Ok" onPress={handleSubmit} />
+              <Button title="Cancel" onPress={handleCancel} />
+            </View>
+          </>
+        ) : (
+          <Text>all points</Text>
+        )}
       </Modal>
       <StatusBar style="auto" />
     </View>
