@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
-import { Map, Modal, Panel, Input } from "./components";
+import { Map, Modal, Panel, Input, List } from "./components";
 
 export default function App() {
   const [points, setPoints] = useState([]);
@@ -31,6 +31,8 @@ export default function App() {
   };
 
   const handleList = () => {
+    console.log("f");
+    console.log(points);
     setVisibilityFilter("all_points");
     setVisibility(true);
   };
@@ -53,7 +55,7 @@ export default function App() {
             </View>
           </>
         ) : (
-          <Text>all points</Text>
+          <List points={points} />
         )}
       </Modal>
       <StatusBar style="auto" />
