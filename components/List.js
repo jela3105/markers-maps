@@ -24,7 +24,7 @@ export default ({ points, closeModal }) => {
         />
       </View>
       <View style={styles.button}>
-        <Button onPress={closeModal} title="Cancel" />
+        <Button onPress={closeModal} title="Close" />
       </View>
     </>
   );

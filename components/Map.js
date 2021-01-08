@@ -1,9 +1,15 @@
 import React from "react";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import { StyleSheet, Dimensions } from "react-native";
 
-export default ({ onLongPress }) => {
-  return <MapView onLongPress={onLongPress} style={styles.map} />;
+export default ({ onLongPress, points }) => {
+  return (
+    <MapView onLongPress={onLongPress} style={styles.map}>
+      {points.map((x) => (
+        <Marker coordinate={x.coordinate} title={x.name} key={x.name} />
+      ))}
+    </MapView>
+  );
 };
 
 const styles = StyleSheet.create({

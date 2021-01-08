@@ -39,11 +39,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Map onLongPress={handleLongPress} />
+      <Map onLongPress={handleLongPress} points={points} />
       <Panel onPressList={handleList} textList="List" />
       <Modal visibility={visibility}>
         {visibilityFilter === "new_point" ? (
-          <>
+          <View style={styles.form}>
             <Input
               title="Name"
               placeholder="Point name"
@@ -53,7 +53,7 @@ export default function App() {
               <Button title="Ok" onPress={handleSubmit} />
               <Button title="Cancel" onPress={handleCancel} />
             </View>
-          </>
+          </View>
         ) : (
           <List points={points} closeModal={handleCancel} />
         )}
@@ -64,6 +64,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  form: { padding: 15 },
   container: {
     flex: 1,
     backgroundColor: "#fff",
