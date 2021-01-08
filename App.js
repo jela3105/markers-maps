@@ -41,6 +41,8 @@ export default function App() {
 
   const removePoint = (point) => {
     console.log(`remove item ${point}`);
+    const newPoints = points.filter((x) => x.name !== point);
+    setPoints(newPoints);
   };
 
   return (
