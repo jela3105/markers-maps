@@ -5,7 +5,9 @@ import {
   View,
   Button,
   StyleSheet,
+  TouchableOpacity,
   Dimensions,
+  Image,
 } from "react-native";
 
 export default ({ points, closeModal }) => {
@@ -17,13 +19,16 @@ export default ({ points, closeModal }) => {
           data={points.map((x) => x.name)}
           renderItem={({ item }) => (
             <View style={styles.item}>
-              <Text>{item}</Text>
+              <Text style={styles.title}>{item}</Text>
+              <TouchableOpacity style={styles.delete}>
+                <Text style={styles.textDelete}>Delete</Text>
+              </TouchableOpacity>
             </View>
           )}
           keyExtractor={(item) => item}
         />
       </View>
-      <View style={styles.button}>
+      <View>
         <Button onPress={closeModal} title="Close" />
       </View>
     </>
@@ -31,15 +36,27 @@ export default ({ points, closeModal }) => {
 };
 
 const styles = StyleSheet.create({
-  button: { paddingBottom: 15 },
   list: {
     height: Dimensions.get("window").height - 300,
   },
   item: {
     borderBottomWidth: 1,
     borderColor: "#ccc",
-    height: 50,
-    justifyContent: "center",
+    height: 80,
+    flexDirection: "row",
     padding: 20,
+  },
+  title: {
+    flex: 3,
+  },
+  delete: {
+    backgroundColor: "#ff0000",
+    flex: 1,
+    width: 70,
+    borderRadius: 5,
+    padding: 10,
+  },
+  textDelete: {
+    color: "white",
   },
 });
