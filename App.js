@@ -34,10 +34,13 @@ export default function App() {
   };
 
   const handleList = () => {
-    console.log("f");
     console.log(points);
     setVisibilityFilter("all_points");
     setVisibility(true);
+  };
+
+  const removePoint = (point) => {
+    console.log(`remove item ${point}`);
   };
 
   return (
@@ -66,7 +69,11 @@ export default function App() {
             </View>
           </View>
         ) : (
-          <List points={points} closeModal={handleCancel} />
+          <List
+            points={points}
+            closeModal={handleCancel}
+            removePoint={removePoint}
+          />
         )}
       </Modal>
       <StatusBar style="auto" />

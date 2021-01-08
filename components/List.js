@@ -7,11 +7,13 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  Image,
 } from "react-native";
 
-export default ({ points, closeModal }) => {
+export default ({ points, closeModal, removePoint }) => {
   console.log(points);
+  const removeItem = (item) => (e) => {
+    removePoint(item);
+  };
   return (
     <>
       <View style={styles.list}>
@@ -20,7 +22,10 @@ export default ({ points, closeModal }) => {
           renderItem={({ item }) => (
             <View style={styles.item}>
               <Text style={styles.title}>{item}</Text>
-              <TouchableOpacity style={styles.delete}>
+              <TouchableOpacity
+                style={styles.delete}
+                onPress={removeItem(item)}
+              >
                 <Text style={styles.textDelete}>Delete</Text>
               </TouchableOpacity>
             </View>
@@ -48,6 +53,7 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 3,
+    margin: 10,
   },
   delete: {
     backgroundColor: "#ff0000",
