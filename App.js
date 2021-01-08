@@ -9,12 +9,15 @@ export default function App() {
   const [tempPoint, setTempPoint] = useState({});
   const [visibilityFilter, setVisibilityFilter] = useState("new_point"); // new_point, all_points
   const [visibility, setVisibility] = useState(false);
+  const [pointsFilter, setPointsFilter] = useState(true);
 
   const handleLongPress = ({ nativeEvent }) => {
     setVisibilityFilter("new_point");
     setTempPoint(nativeEvent.coordinate);
     setVisibility(true);
   };
+
+  const togglePointsFilter = () => setPointsFilter(!pointsFilter);
 
   const handleSubmit = () => {
     const newPoint = { coordinate: tempPoint, name: name };
@@ -39,8 +42,16 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Map onLongPress={handleLongPress} points={points} />
-      <Panel onPressList={handleList} textList="List" />
+      <Map
+        onLongPress={handleLongPress}
+        points={points}
+        pointsFilter={pointsFilter}
+      />
+      <Panel
+        onPressList={handleList}
+        textList="List"
+        togglePointsFilter={togglePointsFilter}
+      />
       <Modal visibility={visibility}>
         {visibilityFilter === "new_point" ? (
           <View style={styles.form}>
