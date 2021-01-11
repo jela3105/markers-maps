@@ -11,6 +11,7 @@ import {
 
 export default ({ points, closeModal, removePoint, editPoint }) => {
   console.log(points);
+
   const removeItem = (item) => (e) => {
     removePoint(item);
   };

@@ -20,10 +20,16 @@ export default function App() {
   const togglePointsFilter = () => setPointsFilter(!pointsFilter);
 
   const handleSubmit = () => {
-    const newPoint = { coordinate: tempPoint, name: name };
-    setPoints(points.concat(newPoint));
-    setVisibility(false);
-    setName("");
+    if (visibilityFilter === "new_point") {
+      const newPoint = { coordinate: tempPoint, name: name };
+      setPoints(points.concat(newPoint));
+      setVisibility(false);
+      setName("");
+    } else if (visibilityFilter === "edit_point") {
+      console.log(name);
+      setVisibility(false);
+      setName("");
+    }
   };
   const handleCancel = () => {
     setVisibility(false);
@@ -45,8 +51,7 @@ export default function App() {
   };
 
   const editPoint = (point) => {
-    const newPoints = points.filter((x) => x.name !== point);
-    setPoints(newPoints);
+    setVisibilityFilter("edit_point");
   };
 
   return (
@@ -62,7 +67,8 @@ export default function App() {
         togglePointsFilter={togglePointsFilter}
       />
       <Modal visibility={visibility}>
-        {visibilityFilter === "new_point" ? (
+        {visibilityFilter === "new_point" ||
+        visibilityFilter === "edit_point" ? (
           <View style={styles.form}>
             <Input
               title="Name"
