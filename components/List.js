@@ -9,10 +9,13 @@ import {
   Dimensions,
 } from "react-native";
 
-export default ({ points, closeModal, removePoint }) => {
+export default ({ points, closeModal, removePoint, editPoint }) => {
   console.log(points);
   const removeItem = (item) => (e) => {
     removePoint(item);
+  };
+  const editItem = (item) => (e) => {
+    editPoint(item);
   };
   return (
     <>
@@ -22,11 +25,14 @@ export default ({ points, closeModal, removePoint }) => {
           renderItem={({ item }) => (
             <View style={styles.item}>
               <Text style={styles.title}>{item}</Text>
+              <TouchableOpacity style={styles.edit} onPress={editItem(item)}>
+                <Text style={styles.textButton}>Edit</Text>
+              </TouchableOpacity>
               <TouchableOpacity
                 style={styles.delete}
                 onPress={removeItem(item)}
               >
-                <Text style={styles.textDelete}>Delete</Text>
+                <Text style={styles.textButton}>Delete</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -52,17 +58,26 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    flex: 3,
+    flex: 5,
     margin: 10,
   },
   delete: {
     backgroundColor: "#ff0000",
-    flex: 1,
+    flex: 2,
     width: 70,
     borderRadius: 5,
     padding: 10,
+    marginLeft: 5,
   },
-  textDelete: {
+  edit: {
+    backgroundColor: "#0000ff",
+    flex: 2,
+    width: 70,
+    borderRadius: 5,
+    padding: 10,
+    marginLeft: 5,
+  },
+  textButton: {
     color: "white",
   },
 });

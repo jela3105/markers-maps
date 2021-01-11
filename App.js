@@ -40,7 +40,11 @@ export default function App() {
   };
 
   const removePoint = (point) => {
-    console.log(`remove item ${point}`);
+    const newPoints = points.filter((x) => x.name !== point);
+    setPoints(newPoints);
+  };
+
+  const editPoint = (point) => {
     const newPoints = points.filter((x) => x.name !== point);
     setPoints(newPoints);
   };
@@ -75,6 +79,7 @@ export default function App() {
             points={points}
             closeModal={handleCancel}
             removePoint={removePoint}
+            editPoint={editPoint}
           />
         )}
       </Modal>
