@@ -10,6 +10,7 @@ export default function App() {
   const [visibilityFilter, setVisibilityFilter] = useState("new_point"); // new_point, all_points
   const [visibility, setVisibility] = useState(false);
   const [pointsFilter, setPointsFilter] = useState(true);
+  const [selectPoint, setSelectPoint] = useState("");
 
   const handleLongPress = ({ nativeEvent }) => {
     setVisibilityFilter("new_point");
@@ -27,6 +28,12 @@ export default function App() {
       setName("");
     } else if (visibilityFilter === "edit_point") {
       console.log(name);
+      console.log(selectPoint);
+      points.map((x) => {
+        if (x.name === selectPoint) {
+          x.name = name;
+        }
+      });
       setVisibility(false);
       setName("");
     }
@@ -52,6 +59,7 @@ export default function App() {
 
   const editPoint = (point) => {
     setVisibilityFilter("edit_point");
+    setSelectPoint(point);
   };
 
   return (
